@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
-import Home from "../pages/Home";
-import Forbidden from "../pages/Forbidden";
 
+const Home = lazy(() => import("../pages/Home"));
+const Forbidden = lazy(() => import("../pages/Forbidden"));
 const Products = lazy(() => import("../pages/Products"));
 const ProductDetails = lazy(() => import("../pages/ProductDetails"));
 const Cart = lazy(() => import("../pages/Cart"));
@@ -27,7 +27,9 @@ const AppRoutes = () => {
         path="/"
         element={
           <ProtectedRoute forbiddenRoles={["ADMIN"]}>
-            <Home />
+            <Suspense fallback={<LoadingFallback />}>
+              <Home />
+            </Suspense>
           </ProtectedRoute>
         }
       />
@@ -107,7 +109,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-      <Route path="/403" element={<Forbidden />} />
+      <Route path="/403" element={<Suspense fallback={<LoadingFallback />}><Forbidden /></Suspense>} />
       <Route
         path="/404"
         element={

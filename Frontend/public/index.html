@@ -24,19 +24,30 @@
     />
     <meta property="og:image" content="image/store.png" />
 
-    <!-- Font Awesome for Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-
-    <!-- Google Fonts: Tajawal only (limit weights to reduce mobile payload) -->
+    <!-- Preconnect for critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://e-commerce-fullstack-v8ok.onrender.com" />
+
+    <!-- Google Fonts: Tajawal (non-render-blocking) -->
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+
+    <!-- Inline critical CSS for above-the-fold content -->
+    <style>
+      *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Tajawal',sans-serif;line-height:1.6;color:#1e293b;background-color:#f8fafc;direction:rtl;overflow-x:hidden}#root{min-height:100vh}img{max-width:100%;height:auto;display:block}
+    </style>
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
