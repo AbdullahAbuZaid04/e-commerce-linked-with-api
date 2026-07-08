@@ -236,34 +236,8 @@ npm start      # http://localhost:3000
 
 ---
 
-## لقطة شاشة
-
-> قريباً — Screenshots
-
----
-
-## التطوير المستقبلي
-
-- [ ] تكامل دفع (Stripe)
-- [ ] Docker + docker-compose
-- [ ] اختبارات (Jest + Supertest + React Testing Library)
-- [ ] CI/CD (GitHub Actions)
-- [ ] إعادة تعيين كلمة المرور
-- [ ] تحديث الملف الشخصي
-- [ ] Refresh Token Rotation
-- [ ] إشعارات (Email)
-- [ ] إحصائيات متقدمة
-
----
-
-## التراخيص
-
-MIT © [Abdullah Abu Zaid](https://github.com/AbdullahAbuZaid04)
-
-</div>
-
----
-
-<p align="center" dir="ltr">
-  Made with ❤️ in Palestine
+<p align="center">
+  <a href="#restaurant-ordering-system-quickbite">
+    <img src="https://img.shields.io/badge/Back%20To%20Top-⬆️-gray?style=flat-square" alt="Back to Top" />
+  </a>
 </p>
