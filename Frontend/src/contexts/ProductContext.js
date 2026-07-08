@@ -15,7 +15,7 @@ const mapProduct = (p) => ({
   description: p.description,
   price: Number(p.price) || 0,
   image: resolveImage(p.images?.[0] || p.image || null),
-  stockQuantity: Number(p.stock ?? p.stockQuantity) || 0,
+  stock: Number(p.stock ?? 0) || 0,
   categoryId: p.category?.id ?? p.categoryId,
   categoryName: p.category?.name ?? p.categoryName,
   categorySlug: p.category?.slug ?? p.categorySlug,
@@ -98,7 +98,7 @@ export const ProductProvider = ({ children }) => {
         description: product.description,
         price: product.price,
         images: product.image ? [product.image] : [],
-        stock: product.stockQuantity,
+        stock: product.stock,
         categoryId: product.categoryId,
       });
       await fetchProducts();
@@ -113,7 +113,7 @@ export const ProductProvider = ({ children }) => {
       if (updates.name !== undefined) body.name = updates.name;
       if (updates.description !== undefined) body.description = updates.description;
       if (updates.price !== undefined) body.price = updates.price;
-      if (updates.stockQuantity !== undefined) body.stock = updates.stockQuantity;
+      if (updates.stock !== undefined) body.stock = updates.stock;
       if (updates.categoryId !== undefined) body.categoryId = updates.categoryId;
       if (updates.image !== undefined) body.images = updates.image ? [updates.image] : [];
       await updateProductApi(id, body);

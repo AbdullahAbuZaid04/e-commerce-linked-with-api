@@ -22,7 +22,7 @@ const ProductCard = memo(({ product }) => {
     Date.now() - new Date(product.createdAt).getTime() < 7 * 24 * 60 * 60 * 1000;
 
   const itemInCartQuantity = getItemQuantity(product?.id) || 0;
-  const availableStock = (product?.stockQuantity || 0) - itemInCartQuantity;
+  const availableStock = (product?.stock || 0) - itemInCartQuantity;
   const isProductInCart = isInCart(product?.id);
 
   const handleProductClick = (e) => {

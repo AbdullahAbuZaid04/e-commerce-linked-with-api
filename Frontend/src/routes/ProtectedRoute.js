@@ -12,20 +12,13 @@ const ProtectedRoute = ({ children, allowedRoles, forbiddenRoles }) => {
     );
   }
 
-  const userRole = user?.role?.toUpperCase();
+  const userRole = user?.role;
 
-  if (
-    allowedRoles &&
-    (!user || !allowedRoles.map(r => r.toUpperCase()).includes(userRole))
-  ) {
+  if (allowedRoles && (!user || !allowedRoles.includes(userRole))) {
     return <Navigate to="/403" replace />;
   }
 
-  if (
-    forbiddenRoles &&
-    user &&
-    forbiddenRoles.map(r => r.toUpperCase()).includes(userRole)
-  ) {
+  if (forbiddenRoles && user && forbiddenRoles.includes(userRole)) {
     return <Navigate to="/403" replace />;
   }
 

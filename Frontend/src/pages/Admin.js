@@ -56,7 +56,7 @@ const Admin = () => {
     name: "",
     description: "",
     price: "",
-    stockQuantity: "",
+    stock: "",
     categoryId: "",
     image: "",
   });
@@ -226,7 +226,7 @@ const Admin = () => {
       name: "",
       description: "",
       price: "",
-      stockQuantity: "",
+      stock: "",
       categoryId: "",
       image: "",
     });
@@ -253,7 +253,7 @@ const Admin = () => {
         name: item.name,
         description: item.description,
         price: item.price,
-        stockQuantity: item.stockQuantity,
+        stock: item.stock,
         categoryId: item.categoryId,
         image: typeof item.image === "string" ? item.image : "",
       });
@@ -262,7 +262,7 @@ const Admin = () => {
         name: item.name,
         description: item.description,
         price: "",
-        stockQuantity: "",
+        stock: "",
         categoryId: "",
         image: "",
       });
@@ -278,7 +278,7 @@ const Admin = () => {
           !form.name.trim() ||
           !form.description.trim() ||
           !form.price ||
-          !form.stockQuantity ||
+          !form.stock ||
           !form.categoryId
         ) {
           showError("يرجى ملء جميع الحقول");
@@ -296,7 +296,7 @@ const Admin = () => {
           name: form.name,
           description: form.description,
           price: parseFloat(form.price),
-          stockQuantity: parseInt(form.stockQuantity),
+          stock: parseInt(form.stock),
           categoryId: form.categoryId,
           image: imageUrl,
         };
@@ -531,12 +531,12 @@ const Admin = () => {
                             <td className="p-4">
                               <span
                                 className={`px-2.5 py-1 rounded-lg text-xs font-bold ${
-                                  p.stockQuantity > 10
+                                  p.stock > 10
                                     ? "bg-green-50 text-green-600"
                                     : "bg-red-50 text-red-600"
                                 }`}
                               >
-                                {p.stockQuantity}
+                                {p.stock}
                               </span>
                             </td>
                             <td className="p-4">
@@ -1185,11 +1185,11 @@ const Admin = () => {
                         </label>
                         <input
                           type="number"
-                          value={form.stockQuantity}
+                          value={form.stock}
                           onChange={(e) =>
                             setForm((prev) => ({
                               ...prev,
-                              stockQuantity: e.target.value,
+                              stock: e.target.value,
                             }))
                           }
                           min={0}

@@ -251,7 +251,7 @@ const Cart = () => {
                               handleIncreaseQuantity(
                                 item.id,
                                 item.quantity,
-                                item.stockQuantity,
+                                item.stock,
                               )
                             }
                             aria-label="زيادة كمية المنتج"

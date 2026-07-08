@@ -26,7 +26,7 @@ const AppRoutes = () => {
       <Route
         path="/"
         element={
-          <ProtectedRoute forbiddenRoles={["admin"]}>
+          <ProtectedRoute forbiddenRoles={["ADMIN"]}>
             <Home />
           </ProtectedRoute>
         }
@@ -34,7 +34,7 @@ const AppRoutes = () => {
       <Route
         path="/products"
         element={
-          <ProtectedRoute forbiddenRoles={["admin"]}>
+          <ProtectedRoute forbiddenRoles={["ADMIN"]}>
             <Suspense fallback={<LoadingFallback />}>
               <Products />
             </Suspense>
@@ -44,7 +44,7 @@ const AppRoutes = () => {
       <Route
         path="/product/:slug"
         element={
-          <ProtectedRoute forbiddenRoles={["admin"]}>
+          <ProtectedRoute forbiddenRoles={["ADMIN"]}>
             <Suspense fallback={<LoadingFallback />}>
               <ProductDetails />
             </Suspense>
@@ -54,7 +54,7 @@ const AppRoutes = () => {
       <Route
         path="/cart"
         element={
-          <ProtectedRoute forbiddenRoles={["admin"]}>
+          <ProtectedRoute forbiddenRoles={["ADMIN"]}>
             <Suspense fallback={<LoadingFallback />}>
               <Cart />
             </Suspense>
@@ -80,7 +80,7 @@ const AppRoutes = () => {
       <Route
         path="/dashboard"
         element={
-          <ProtectedRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={["ADMIN"]}>
             <Suspense fallback={<LoadingFallback />}>
               <Admin />
             </Suspense>
@@ -90,7 +90,7 @@ const AppRoutes = () => {
       <Route
         path="/order-success"
         element={
-          <ProtectedRoute forbiddenRoles={["admin"]}>
+          <ProtectedRoute forbiddenRoles={["ADMIN"]}>
             <Suspense fallback={<LoadingFallback />}>
               <OrderSuccess />
             </Suspense>
@@ -100,7 +100,7 @@ const AppRoutes = () => {
       <Route
         path="/my-orders"
         element={
-          <ProtectedRoute forbiddenRoles={["admin"]}>
+          <ProtectedRoute forbiddenRoles={["ADMIN"]}>
             <Suspense fallback={<LoadingFallback />}>
               <MyOrders />
             </Suspense>

@@ -69,14 +69,14 @@ const ProductDetails = () => {
   }
 
   const cartQuantity = getItemQuantity(product.id);
-  const availableStock = product.stockQuantity - cartQuantity;
+  const availableStock = product.stock - cartQuantity;
   const isOutOfStock = availableStock <= 0;
   const itemInCart = isInCart(product.id);
 
   const handleCartAction = () => {
     const newQuantityNeeded = itemInCart ? cartQuantity + quantity : quantity;
-    if (newQuantityNeeded > product.stockQuantity) {
-      error(`لا يمكن تجاوز الكمية المتوفرة (${product.stockQuantity} قطعة)`);
+    if (newQuantityNeeded > product.stock) {
+      error(`لا يمكن تجاوز الكمية المتوفرة (${product.stock} قطعة)`);
       return;
     }
     if (itemInCart) {
