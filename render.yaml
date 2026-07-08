@@ -4,7 +4,7 @@ services:
     env: node
     rootDir: Backend
     buildCommand: npm install && npm run prisma:generate
-    startCommand: npx prisma migrate deploy && npm start
+    startCommand: npx prisma migrate deploy && npx prisma db seed && npm start
     envVars:
       - key: NODE_ENV
         value: production
