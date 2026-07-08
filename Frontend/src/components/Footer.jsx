@@ -7,24 +7,16 @@ import {
   FaXTwitter,
   FaWhatsapp,
 } from "react-icons/fa6";
-import { getCategoriesApi } from "../api/categoryService";
+import { useProducts } from "../contexts/ProductContext";
 
 const Footer = memo(() => {
   const [showScrollButton, setShowScrollButton] = useState(false);
-  const [footerCategories, setFooterCategories] = useState([]);
+  const { categories } = useProducts();
 
   useEffect(() => {
     const handleScroll = () => setShowScrollButton(window.scrollY > 300);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    getCategoriesApi()
-      .then((res) => {
-        if (res?.data) setFooterCategories(res.data.map((c) => c.name));
-      })
-      .catch(() => {});
   }, []);
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -121,13 +113,13 @@ const Footer = memo(() => {
               أهم الأقسام
             </h3>
             <div className="flex flex-col gap-2.5">
-              {(footerCategories.length > 0 ? footerCategories : []).map(
+              {(categories.length > 0 ? categories : []).map(
                 (cat) => (
                   <span
-                    key={cat}
+                    key={cat.id}
                     className="text-[#94a3b8] hover:text-primary-light transition-all duration-300 w-fit cursor-pointer hover:-translate-x-2.5"
                   >
-                    {cat}
+                    {cat.name}
                   </span>
                 ),
               )}
