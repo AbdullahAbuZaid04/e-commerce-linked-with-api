@@ -19,7 +19,7 @@ const Register = () => {
 
   useEffect(() => {
     if (user && !registerInProgress.current) {
-      navigate("/", { replace: true });
+      navigate(user.role === "ADMIN" ? "/dashboard" : "/", { replace: true });
     }
   }, [user, navigate]);
 
@@ -53,7 +53,8 @@ const Register = () => {
     registerInProgress.current = true;
     try {
       await register(form.name, form.email, form.password);
-      navigate("/");
+      const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
+      navigate(savedUser?.role === "ADMIN" ? "/dashboard" : "/");
     } catch (err) {
       showError(err.message || "فشل إنشاء الحساب");
     } finally {

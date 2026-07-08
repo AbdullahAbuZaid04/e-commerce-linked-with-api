@@ -13,6 +13,9 @@ export const apiClient = async (endpoint, options = {}) => {
     headers["Authorization"] = `Bearer ${token}`;
   }
 
+  const authEndpoints = ["/api/auth/login", "/api/auth/register"];
+  const skipRefresh = authEndpoints.some((ep) => endpoint.startsWith(ep));
+
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
@@ -31,7 +34,7 @@ export const apiClient = async (endpoint, options = {}) => {
     let response = await doFetch(headers);
 
     if (!response.ok) {
-      if (response.status === 401 && !retried) {
+      if (response.status === 401 && !retried && !skipRefresh) {
         const refreshed = await refreshToken();
         if (refreshed) {
           retried = true;

@@ -12,7 +12,7 @@ import AppRoutes from "./routes/AppRoutes";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 const AppContent = () => {
-  const hideFooterPaths = ["/login", "/register", "/admin", "/403", "/404"];
+  const hideFooterPaths = ["/login", "/register", "/dashboard", "/403", "/404"];
   const { pathname } = useLocation();
   const showFooter = !hideFooterPaths.some((p) => pathname.startsWith(p));
 

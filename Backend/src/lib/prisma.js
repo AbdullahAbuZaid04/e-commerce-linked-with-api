@@ -14,14 +14,18 @@ if (!config.db.url) {
   process.exit(1);
 }
 
+const poolConfig = {
+  connectionString: config.db.url,
+  ssl: { rejectUnauthorized: false },
+};
+
 if (process.env.NODE_ENV === "production") {
-  const pool = new Pool({ connectionString: config.db.url });
+  const pool = new Pool(poolConfig);
   const adapter = new PrismaPg(pool);
   prisma = new PrismaClient({ adapter });
 } else {
-  // Prevent multiple instances of Prisma Client in development (singleton pattern)
   if (!global.prisma) {
-    const pool = new Pool({ connectionString: config.db.url });
+    const pool = new Pool(poolConfig);
     const adapter = new PrismaPg(pool);
     global.prisma = new PrismaClient({
       adapter,
@@ -32,4 +36,3 @@ if (process.env.NODE_ENV === "production") {
 }
 
 module.exports = prisma;
-

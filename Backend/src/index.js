@@ -20,6 +20,13 @@ const PORT = config.port;
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(cors({ origin: config.corsOrigin, credentials: true }));
 app.use(express.json({ limit: "500kb" }));
+app.use("/uploads/products", (req, res, next) => {
+  const filePath = path.join(__dirname, "../public/uploads/products", req.path);
+  if (!require("fs").existsSync(filePath)) {
+    return res.sendFile(path.join(__dirname, "../public/uploads/products/placeholder.svg"));
+  }
+  next();
+});
 app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 
 const globalLimiter = rateLimit({

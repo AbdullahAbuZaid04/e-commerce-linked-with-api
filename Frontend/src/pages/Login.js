@@ -20,7 +20,7 @@ const Login = () => {
 
   useEffect(() => {
     if (user && !loginInProgress.current) {
-      navigate("/", { replace: true });
+      navigate(user.role === "ADMIN" ? "/dashboard" : "/", { replace: true });
     }
   }, [user, navigate]);
 
@@ -46,7 +46,8 @@ const Login = () => {
     loginInProgress.current = true;
     try {
       await login(form.email, form.password);
-      navigate(from);
+      const savedUser = JSON.parse(localStorage.getItem("user") || "{}");
+      navigate(savedUser?.role === "ADMIN" ? "/dashboard" : from);
     } catch (err) {
       showError(err.message || "البريد الإلكتروني أو كلمة المرور غير صحيحة");
     } finally {

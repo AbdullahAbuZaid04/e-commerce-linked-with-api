@@ -67,7 +67,7 @@ const Header = memo(() => {
           <div className="flex items-center justify-between">
             {/* LOGO */}
             <Link
-              to={isAdmin ? "/admin" : "/"}
+              to={isAdmin ? "/dashboard" : "/"}
               aria-label="الرئيسية - متجرنا"
               className="flex items-center gap-2.5 text-primary no-underline transition-transform duration-300 hover:scale-105 shrink-0"
             >
@@ -86,7 +86,7 @@ const Header = memo(() => {
               aria-label="القائمة الرئيسية"
             >
               {isAdmin ? (
-                <Link to="/admin" className={getLinkClass("/admin")}>
+                <Link to="/dashboard" className={getLinkClass("/dashboard")}>
                   <HiShieldCheck className="ml-1.5" size={18} />
                   لوحة التحكم
                 </Link>
@@ -208,9 +208,9 @@ const Header = memo(() => {
               <nav className="flex flex-col gap-2 mt-2">
                 {isAdmin ? (
                   <Link
-                    to="/admin"
+                    to="/dashboard"
                     onClick={() => setMobileOpen(false)}
-                    className={getMobileLinkClass("/admin")}
+                    className={getMobileLinkClass("/dashboard")}
                   >
                     <HiShieldCheck size={20} />
                     لوحة التحكم

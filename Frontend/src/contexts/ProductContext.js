@@ -49,6 +49,7 @@ export const ProductProvider = ({ children }) => {
         setProducts([]);
         setTotalProducts(0);
       }
+      setError(null);
       return res;
     } catch (err) {
       setProducts([]);
@@ -66,6 +67,7 @@ export const ProductProvider = ({ children }) => {
       } else {
         setCategories([]);
       }
+      setError(null);
     } catch (err) {
       setCategories([]);
       setError(err.message || "فشل تحميل التصنيفات");

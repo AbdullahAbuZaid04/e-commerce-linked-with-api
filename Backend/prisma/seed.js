@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+const { hashPassword } = require("../src/utils/hash");
 
 const prisma = new PrismaClient();
 
@@ -18,6 +19,18 @@ async function main() {
   await prisma.category.deleteMany();
   await prisma.user.deleteMany();
 
+  // ─── Admin User ───
+  const hashedPassword = await hashPassword("admin123");
+  await prisma.user.create({
+    data: {
+      name: "مدير الموقع",
+      email: "admin@shop.com",
+      password: hashedPassword,
+      role: "ADMIN",
+    },
+  });
+  console.log("  ✓ Admin user created");
+
   // ─── Categories ───
   const categoriesData = [
     { name: "إلكترونيات", slug: generateSlug("إلكترونيات") },
@@ -35,7 +48,7 @@ async function main() {
   console.log("  ✓ Categories created");
 
   // ─── Products ───
-  const img = (name) => `/uploads/products/${name}`;
+  const img = (name) => `/uploads/products/${name.replace(/\.webp$/, ".jpg")}`;
   const productsData = [
     {
       name: "سماعات بلوتوث لاسلكية",
@@ -57,7 +70,7 @@ async function main() {
       name: "شاحن متنقل باور بانك 20000mAh",
       description: "باور بانك بسعة 20000 ملي أمبير مع منفذي USB وشحن سريع. مناسب للسفر والاستخدام اليومي.",
       price: 89.99,
-      images: [img("samsung-galaxy-s23.webp")],
+      images: [img("powerbank-20000mah.webp")],
       stock: 100,
       categorySlug: generateSlug("إلكترونيات"),
     },
@@ -67,14 +80,6 @@ async function main() {
       price: 45.00,
       images: [img("shirt-cotton.webp"), img("t-shirt-printed.webp")],
       stock: 200,
-      categorySlug: generateSlug("ملابس"),
-    },
-    {
-      name: "جاكيت شتوي دافئ",
-      description: "جاكيت شتوي عالي الجودة مع بطانة داخلية دافئة، مقاوم للرياح والماء. مناسب للأجواء الباردة.",
-      price: 199.99,
-      images: [img("jacket-winter.webp"), img("jacket-leather-black.webp"), img("hoodie-sporty.webp")],
-      stock: 25,
       categorySlug: generateSlug("ملابس"),
     },
     {
@@ -102,35 +107,11 @@ async function main() {
       categorySlug: generateSlug("ملابس"),
     },
     {
-      name: "حذاء رياضي بوماトレiner",
-      description: "حذاء رياضي من بوما بتصميم رياضي أنيق، مناسب للتمارين والجري.",
-      price: 189.99,
-      images: [img("puma-trainer.webp")],
-      stock: 32,
-      categorySlug: generateSlug("ملابس"),
-    },
-    {
       name: "بدلة كلاسيكية أنيقة",
       description: "بدلة كلاسيكية بقصّة عصرية، مناسبة للمناسبات الرسمية والعمل.",
       price: 399.99,
       images: [img("suit-classic.webp"), img("shirt-cotton.webp")],
       stock: 15,
-      categorySlug: generateSlug("ملابس"),
-    },
-    {
-      name: "بنطلون جينز كلاسيكي",
-      description: "بنطلون جينز بقصة مستقيمة ومريحة، يناسب جميع الأوقات.",
-      price: 89.99,
-      images: [img("jeans-classic.webp")],
-      stock: 60,
-      categorySlug: generateSlug("ملابس"),
-    },
-    {
-      name: "كعب عالي أنيق",
-      description: "حذاء كعب عالي بتصميم أنيق مناسب للسهرات والمناسبات الخاصة.",
-      price: 159.99,
-      images: [img("heels.webp")],
-      stock: 20,
       categorySlug: generateSlug("ملابس"),
     },
     {
@@ -241,7 +222,7 @@ async function main() {
       name: "رواية - ألف ليلة وليلة",
       description: "نسخة فاخرة من ألف ليلة وليلة مع رسوم توضيحية، طبعة حديثة مع هوامش وشروح.",
       price: 65.00,
-      images: [img("ipad-air.webp")],
+      images: [img("book-arabian-nights.webp")],
       stock: 60,
       categorySlug: generateSlug("كتب"),
     },
