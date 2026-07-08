@@ -2,6 +2,7 @@ services:
   - type: web
     name: e-commerce-api
     env: node
+    rootDir: Backend
     buildCommand: npm install && npm run prisma:generate
     startCommand: npx prisma migrate deploy && npm start
     envVars:
