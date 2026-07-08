@@ -1,5 +1,5 @@
 {
-  "name": "express-prisma-starter",
+  "name": "e-commerce-backend",
   "version": "1.0.0",
   "description": "Starter template: Express + PostgreSQL + Prisma + JWT Auth",
   "main": "src/index.js",
@@ -28,10 +28,10 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "^2.2.0",
-    "pg": "^8.22.0",
-    "prisma": "^5.20.0"
+    "pg": "^8.22.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "prisma": "^5.20.0"
   }
 }
